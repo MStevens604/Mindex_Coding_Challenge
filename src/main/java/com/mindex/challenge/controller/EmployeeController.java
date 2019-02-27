@@ -45,7 +45,8 @@ public class EmployeeController {
 //    public ReportingStructure getReportingStructure(@PathVariable String id) {
 //	return employeeService.read(id).getReportingStructure();
     public int getReportingStructure(@PathVariable String id) {
-    	return 0;
+    	ReportingStructure reportStruct = new ReportingStructure(employeeService.read(id), employeeService);
+    	return reportStruct.getNumberOfReports();
     }
     
 }
