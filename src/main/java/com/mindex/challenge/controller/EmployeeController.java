@@ -43,18 +43,17 @@ public class EmployeeController {
     
     /**
      * Implemented code.
-     * TODO Return a json reportingStructure.  Currently just returns int.
+     * TODO: Requirements clarification of returned JSON - do we actually want the employee/their reports nested instead of just returning the ID and count?
+     * TODO: Put this in it's own Rest controller
      */
     
     @GetMapping("/reportingStructure/{id}")
-//    public ReportingStructure getReportingStructure(@PathVariable String id) {
-//	return employeeService.read(id).getReportingStructure();
-    public int getReportingStructure(@PathVariable String id) {
+    public ReportingStructure getReportingStructure(@PathVariable String id) {
     	if (reportingStructCalc == null) {
     		reportingStructCalc = new ReportingStructureCalculator(employeeService);
     	}
     	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
-    	return report.getNumberOfReports();
+    	return report;
     }
     
 }
