@@ -38,7 +38,8 @@ public class EmployeeController {
     }
     
     /**
-     * Implemented
+     * Implemented code.
+     * TODO Return a json reportingStructure.  Currently just returns int.
      */
     
     @GetMapping("/reportingStructure/{id}")

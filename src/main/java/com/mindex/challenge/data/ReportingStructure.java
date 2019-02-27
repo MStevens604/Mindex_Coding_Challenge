@@ -13,19 +13,15 @@ public class ReportingStructure {
 	private int numberOfReports;
 	
 	public int getNumberOfReports() {
-		numberOfReports = getTotalReports(employee);
+		numberOfReports = getTotalReports(employee); //calculate on demand, TODO fix
 		return numberOfReports;
 	}
 	
 	public ReportingStructure(Employee _employee, EmployeeService _employeeService) {
 		this.employee = _employee;
-		this.employeeService = _employeeService;
+		this.employeeService = _employeeService; //TODO get rid of this wiring
 	}
 	
-//	public t testReturns() {
-//		ObjectWriter jsonMaker = new ObjectMapper().writer().withDefaultPrettyPrinter();
-//		return jsonMaker.wr
-//	}
 	public int getTotalReports(Employee _employee) {
 		int reportCount = 0;
 		if (_employee.getDirectReports() == null) {
