@@ -17,7 +17,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    private ReportingStructureCalculator reportingStructCalc; //TODO cleanup calls once employeeService is autowired
+    private ReportingStructureCalculator reportingStructCalc; //TODO autowire inside this
     
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
@@ -43,13 +43,18 @@ public class EmployeeController {
     
     /**
      * Implemented code.
+     */
+    
+    /**
+     * This new endpoint should accept an employeeId and return the fully filled out ReportingStructure for the specified employeeId. 
+     * The values should be computed on the fly and will not be persisted.
      * TODO: Requirements clarification of returned JSON - do we actually want the employee/their reports nested instead of just returning the ID and count?
      * TODO: Put this in it's own Rest controller
      */
     
     @GetMapping("/reportingStructure/{id}")
     public ReportingStructure getReportingStructure(@PathVariable String id) {
-    	if (reportingStructCalc == null) {
+    	if (reportingStructCalc == null) { //This can go away after autowiring
     		reportingStructCalc = new ReportingStructureCalculator(employeeService);
     	}
     	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
