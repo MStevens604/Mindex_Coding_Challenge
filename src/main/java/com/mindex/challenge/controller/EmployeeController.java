@@ -3,6 +3,8 @@ package com.mindex.challenge.controller;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
+import com.mindex.challenge.service.impl.ReportingStructureCalculator;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    private ReportingStructureCalculator reportingStructCalc;
+    
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
         LOG.debug("Received employee create request for [{}]", employee);
@@ -46,8 +50,11 @@ public class EmployeeController {
 //    public ReportingStructure getReportingStructure(@PathVariable String id) {
 //	return employeeService.read(id).getReportingStructure();
     public int getReportingStructure(@PathVariable String id) {
-    	ReportingStructure reportStruct = new ReportingStructure(employeeService.read(id), employeeService);
-    	return reportStruct.getNumberOfReports();
+    	if (reportingStructCalc == null) {
+    		reportingStructCalc = new ReportingStructureCalculator(employeeService);
+    	}
+    	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
+    	return report.getNumberOfReports();
     }
     
 }
