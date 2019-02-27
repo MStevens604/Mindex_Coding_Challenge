@@ -1,12 +1,17 @@
 package com.mindex.challenge.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 
+@Service
 public class ReportingStructureCalculator {
 
-	private EmployeeService employeeService; //TODO make this autowired
+	@Autowired
+	private EmployeeService employeeService;
     
     public ReportingStructureCalculator(EmployeeService _employeeService) {
 		employeeService = _employeeService;

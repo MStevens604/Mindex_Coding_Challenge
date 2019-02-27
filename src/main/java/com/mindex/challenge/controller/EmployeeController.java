@@ -25,7 +25,8 @@ public class EmployeeController {
     /**
      * Implemented Code
      */
-    private ReportingStructureCalculator reportingStructCalc; //TODO autowire inside this
+    @Autowired
+    private ReportingStructureCalculator reportingStructCalc;
     
     @Autowired
     private CompensationService compensationService;
@@ -68,9 +69,6 @@ public class EmployeeController {
     
     @GetMapping("/reportingStructure/{id}")
     public ReportingStructure getReportingStructure(@PathVariable String id) {
-    	if (reportingStructCalc == null) { //This can go away after autowiring
-    		reportingStructCalc = new ReportingStructureCalculator(employeeService);
-    	}
     	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
     	return report;
     }
