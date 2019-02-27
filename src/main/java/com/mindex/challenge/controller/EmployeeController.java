@@ -1,9 +1,12 @@
 package com.mindex.challenge.controller;
 
+import com.mindex.challenge.data.Compensation;
 import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 import com.mindex.challenge.service.impl.ReportingStructureCalculator;
+
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +21,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     private ReportingStructureCalculator reportingStructCalc; //TODO autowire inside this
+    private ArrayList<Compensation> compensationCollection = new ArrayList<Compensation>();//This is totally not what they meant by persist.  Maybe create mongo instance?
     
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
@@ -42,13 +46,13 @@ public class EmployeeController {
     }
     
     /**
-     * Implemented code.
+     * Implemented code.  Maybe move this to it's own rest controller?
      */
     
-    /**
+    /*
      * This new endpoint should accept an employeeId and return the fully filled out ReportingStructure for the specified employeeId. 
      * The values should be computed on the fly and will not be persisted.
-     * TODO: Requirements clarification of returned JSON - do we actually want the employee/their reports nested instead of just returning the ID and count?
+     * TODO: Requirements clarification of returned JSON - do we actually want the employee and their reports nested instead of just returning the ID and count?
      * TODO: Put this in it's own Rest controller
      */
     
@@ -59,6 +63,29 @@ public class EmployeeController {
     	}
     	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
     	return report;
+    }
+    
+    /**
+     * TODO - requirements clarification - Employee instead of the employeeID in compensation type?
+     * TODO - get rid of this arraylist hack and make it a mongo
+     */
+    @PostMapping("/compensation")
+    public Compensation createCompensation(@RequestBody Compensation compensation) {
+    	compensationCollection.add(compensation);
+    	return compensationCollection.get(compensationCollection.size()-1);//Get the 'newest' compensation.  
+    }
+    
+    /*
+     * TODO - change this from being arraylist hack to mongo calls
+     */
+    @GetMapping("/compensation/{id}")
+    public Compensation getCompensation(@PathVariable String id) {
+    	for (Compensation c : compensationCollection) {
+    		if (c.getEmployee().getEmployeeId().equals(id)) {
+    			return c;
+    		}
+    	}
+    	return null;
     }
     
 }
