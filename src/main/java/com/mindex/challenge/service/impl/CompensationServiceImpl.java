@@ -27,10 +27,13 @@ public class CompensationServiceImpl implements CompensationService {
 	 */
 	@Override
 	public Compensation read(String id) {
-		LOG.debug("Compensation requested'");
+		LOG.debug("Compensation requested");
 		return compRepository.findCompByEmployeeEmployeeId(id);
 	}
 
+	/*
+	 * TODO: Implement update so it handles duplicates
+	 */
 	@Override
 	public Compensation update(Compensation comp) {
 		LOG.debug("Somehow update was called - this method is implemented");
