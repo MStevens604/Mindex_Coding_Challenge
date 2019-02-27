@@ -22,7 +22,7 @@ public class EmployeeController {
 
     private ReportingStructureCalculator reportingStructCalc; //TODO autowire inside this
     private ArrayList<Compensation> compensationCollection = new ArrayList<Compensation>();//This is totally not what they meant by persist.  Maybe create mongo instance?
-    																					   //Could also hijack EmployeeServiceImpl and it's access to the data repo
+    																					   //Could also hijack EmployeeServiceImpl and its access to the data repo
     
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
@@ -47,14 +47,14 @@ public class EmployeeController {
     }
     
     /**
-     * Implemented code.  Maybe move this to it's own rest controller?
+     * Implemented code.  
+     * TODO Maybe move this to its own rest controller?
      */
     
     /*
      * This new endpoint should accept an employeeId and return the fully filled out ReportingStructure for the specified employeeId. 
      * The values should be computed on the fly and will not be persisted.
      * TODO: Requirements clarification of returned JSON - do we actually want the employee and their reports nested instead of just returning the ID and count?
-     * TODO: Put this in it's own Rest controller
      */
     
     @GetMapping("/reportingStructure/{id}")
