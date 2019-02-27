@@ -22,6 +22,7 @@ public class EmployeeController {
 
     private ReportingStructureCalculator reportingStructCalc; //TODO autowire inside this
     private ArrayList<Compensation> compensationCollection = new ArrayList<Compensation>();//This is totally not what they meant by persist.  Maybe create mongo instance?
+    																					   //Could also hijack EmployeeServiceImpl and it's access to the data repo
     
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
@@ -80,9 +81,9 @@ public class EmployeeController {
      */
     @GetMapping("/compensation/{id}")
     public Compensation getCompensation(@PathVariable String id) {
-    	for (Compensation c : compensationCollection) {
-    		if (c.getEmployee().getEmployeeId().equals(id)) {
-    			return c;
+    	for (Compensation comp : compensationCollection) {
+    		if (comp.getEmployee().getEmployeeId().equals(id)) {
+    			return comp;
     		}
     	}
     	return null;
