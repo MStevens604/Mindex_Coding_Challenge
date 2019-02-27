@@ -8,12 +8,12 @@ import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.EmployeeService;
 
 @Service
-public class ReportingStructureCalculator {
+public class ReportingStructureCalculatorImpl {
 
 	@Autowired
 	private EmployeeService employeeService;
     
-    public ReportingStructureCalculator(EmployeeService _employeeService) {
+    public ReportingStructureCalculatorImpl(EmployeeService _employeeService) {
 		employeeService = _employeeService;
 	}
 

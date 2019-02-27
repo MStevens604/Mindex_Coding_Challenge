@@ -36,5 +36,4 @@ public class CompensationServiceImpl implements CompensationService {
 		LOG.debug("Somehow update was called - this method is implemented");
 		return null;
 	}
-
 }

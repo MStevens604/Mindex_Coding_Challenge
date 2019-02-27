@@ -5,10 +5,8 @@ import com.mindex.challenge.data.Employee;
 import com.mindex.challenge.data.ReportingStructure;
 import com.mindex.challenge.service.CompensationService;
 import com.mindex.challenge.service.EmployeeService;
-import com.mindex.challenge.service.impl.CompensationServiceImpl;
-import com.mindex.challenge.service.impl.ReportingStructureCalculator;
-
-import java.util.ArrayList;
+//import com.mindex.challenge.service.ReportingStructureCalculator;
+import com.mindex.challenge.service.impl.ReportingStructureCalculatorImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +20,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    /**
+    /*
      * Implemented Code
      */
     @Autowired
-    private ReportingStructureCalculator reportingStructCalc;
+    private ReportingStructureCalculatorImpl reportingStructCalc;//TODO - Take Interface instead of Impl.
     
     @Autowired
     private CompensationService compensationService;
@@ -69,10 +67,10 @@ public class EmployeeController {
     
     @GetMapping("/reportingStructure/{id}")
     public ReportingStructure getReportingStructure(@PathVariable String id) {
-    	ReportingStructure report = reportingStructCalc.getReportingStructure(id);
-    	return report;
+    	return reportingStructCalc.getReportingStructure(id);
     }
-    /*
+    
+    /* Create two endpoints: One to create and one to read by employeeId. These should persist and query the Compensation from the persistence layer.
      * TODO - requirements clarification - Instead of adding the full Employee object to Compensation, should we use employeeID and read from EmployeeDB?
      */
     @PostMapping("/compensation")
