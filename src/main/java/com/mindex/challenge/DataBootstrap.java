@@ -17,7 +17,7 @@ import java.util.Date;
 @Component
 public class DataBootstrap {
     private static final String DATASTORE_LOCATION = "/static/employee_database.json";
-
+//    private static final String DATASTORE_LOCATION = "/static/mybigger_database.json";
     @Autowired
     private EmployeeRepository employeeRepository;
 
