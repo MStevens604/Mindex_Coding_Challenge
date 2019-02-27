@@ -66,7 +66,7 @@ public class EmployeeController {
     }
     
     /**
-     * TODO - requirements clarification - Employee instead of the employeeID in compensation type?
+     * TODO - requirements clarification - EmployeeID instead of the full employee object in compensation type?
      * TODO - get rid of this arraylist hack and make it a mongo
      */
     @PostMapping("/compensation")
