@@ -3,6 +3,7 @@ package com.mindex.challenge;
 import com.mindex.challenge.dao.EmployeeRepository;
 import com.mindex.challenge.data.Employee;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +39,8 @@ public class DataBootstrapTest {
     }
     
     @Test
+    @Ignore
     public void testReportingStructure() {
-    	Employee lennon = employeeRepository.findByEmployeeId("16a596ae-edd3-4847-99fe-c4518e82c86f");
-//    	assertEquals(4, lennon.getReportingStructure());
+    	//TODO implement junit tests instead of using Postman
     }
 }
