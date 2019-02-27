@@ -17,7 +17,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    private ReportingStructureCalculator reportingStructCalc;
+    private ReportingStructureCalculator reportingStructCalc; //TODO cleanup calls once employeeService is autowired
     
     @PostMapping("/employee")
     public Employee create(@RequestBody Employee employee) {
