@@ -8,7 +8,7 @@ public class Compensation {
 
 	private Employee employee;
 	private int salary;
-	private String effectiveDate; //TODO use java date
+	private String effectiveDate; //TODO use java date?
 
     public Compensation() {
     }
